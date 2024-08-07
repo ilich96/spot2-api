@@ -1,0 +1,12 @@
+name: 'Setup dependencies'
+description: 'It setup dependencies for workflows'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.2
+        extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, xdebug
+        coverage: xdebug
