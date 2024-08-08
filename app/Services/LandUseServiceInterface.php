@@ -8,7 +8,7 @@ interface LandUseServiceInterface
 {
     /**
      * @param LandUse $landUse
-     * @return array
+     * @return array|null
      */
-    public function getUnitPrices(LandUse $landUse): array;
+    public function getUnitPrices(LandUse $landUse): ?array;
 }

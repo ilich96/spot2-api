@@ -8,9 +8,9 @@ class LandUseService implements LandUseServiceInterface
 {
     /**
      * @param LandUse $landUse
-     * @return array
+     * @return array|null
      */
-    public function getUnitPrices(LandUse $landUse): array
+    public function getUnitPrices(LandUse $landUse): ?array
     {
         $landPrice = $landUse->landPrice;
         $constructionLandPrice = $landUse->constructionLandPrice;
@@ -32,6 +32,6 @@ class LandUseService implements LandUseServiceInterface
             ];
         }
 
-        return [];
+        return null;
     }
 }

@@ -45,8 +45,7 @@ class LandUseServiceTest extends TestCase
 
         $result = $this->sut->getUnitPrices($landUse);
 
-        $this->assertIsArray($result);
-        $this->assertEmpty($result);
+        $this->assertNull($result);
     }
 
     public function testGetUnitPrices(): void
