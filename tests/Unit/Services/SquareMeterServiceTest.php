@@ -331,10 +331,12 @@ class SquareMeterServiceTest extends TestCase
         $this->assertArrayHasKey('minimumUnitPriceConstruction', $result);
         $this->assertArrayHasKey('landUsesQuantity', $result);
         $this->assertEquals(
-            $expectedResults['expectedMinimumUnitPrice'], $result['minimumUnitPrice']
+            $expectedResults['expectedMinimumUnitPrice'],
+            $result['minimumUnitPrice']
         );
         $this->assertEquals(
-            $expectedResults['expectedMinimumUnitPriceConstruction'], $result['minimumUnitPriceConstruction']
+            $expectedResults['expectedMinimumUnitPriceConstruction'],
+            $result['minimumUnitPriceConstruction']
         );
         $this->assertEquals(count($landUseRepositoryResult), $result['landUsesQuantity']);
     }
