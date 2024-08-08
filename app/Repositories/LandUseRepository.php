@@ -19,8 +19,7 @@ class LandUseRepository implements LandUseRepositoryInterface
     public function getAllByPostalCodeAndCadastralColonyType(
         string $postalCode,
         string $cadastralColonyType,
-    ): Collection
-    {
+    ): Collection {
         $areaColonyTypeValue = self::AREA_COLONY_TYPE_VALUE;
         $corridorColonyTypeValue = self::CORRIDOR_COLONY_TYPE_VALUE;
         $enclaveColonyTypeValue = self::ENCLAVE_COLONY_TYPE_VALUE;
