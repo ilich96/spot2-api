@@ -163,8 +163,7 @@ class SquareMeterServiceTest extends TestCase
         array $fourthLandUseServiceResult,
         array $fifthLandUseServiceResult,
         array $expectedResults,
-    ): void
-    {
+    ): void {
         $this->landUseRepository->shouldReceive('getAllByPostalCode')
             ->with($postalCode)
             ->times(1)
@@ -187,8 +186,14 @@ class SquareMeterServiceTest extends TestCase
         $this->assertArrayHasKey('averageUnitPrice', $result);
         $this->assertArrayHasKey('averageUnitPriceConstruction', $result);
         $this->assertArrayHasKey('landUsesQuantity', $result);
-        $this->assertEquals($expectedResults['expectedAverageUnitPrice'], $result['averageUnitPrice']);
-        $this->assertEquals($expectedResults['expectedAverageUnitPriceConstruction'], $result['averageUnitPriceConstruction']);
+        $this->assertEquals(
+            $expectedResults['expectedAverageUnitPrice'],
+            $result['averageUnitPrice']
+        );
+        $this->assertEquals(
+            $expectedResults['expectedAverageUnitPriceConstruction'],
+            $result['averageUnitPriceConstruction']
+        );
         $this->assertEquals(count($landUseRepositoryResult), $result['landUsesQuantity']);
     }
 
@@ -230,8 +235,7 @@ class SquareMeterServiceTest extends TestCase
         array $fourthLandUseServiceResult,
         array $fifthLandUseServiceResult,
         array $expectedResults,
-    ): void
-    {
+    ): void {
         $this->landUseRepository->shouldReceive('getAllByPostalCode')
             ->with($postalCode)
             ->times(1)
@@ -254,8 +258,14 @@ class SquareMeterServiceTest extends TestCase
         $this->assertArrayHasKey('maximumUnitPrice', $result);
         $this->assertArrayHasKey('maximumUnitPriceConstruction', $result);
         $this->assertArrayHasKey('landUsesQuantity', $result);
-        $this->assertEquals($expectedResults['expectedMaximumUnitPrice'], $result['maximumUnitPrice']);
-        $this->assertEquals($expectedResults['expectedMaximumUnitPriceConstruction'], $result['maximumUnitPriceConstruction']);
+        $this->assertEquals(
+            $expectedResults['expectedMaximumUnitPrice'],
+            $result['maximumUnitPrice']
+        );
+        $this->assertEquals(
+            $expectedResults['expectedMaximumUnitPriceConstruction'],
+            $result['maximumUnitPriceConstruction']
+        );
         $this->assertEquals(count($landUseRepositoryResult), $result['landUsesQuantity']);
     }
 
@@ -297,8 +307,7 @@ class SquareMeterServiceTest extends TestCase
         array $fourthLandUseServiceResult,
         array $fifthLandUseServiceResult,
         array $expectedResults,
-    ): void
-    {
+    ): void {
         $this->landUseRepository->shouldReceive('getAllByPostalCode')
             ->with($postalCode)
             ->times(1)
