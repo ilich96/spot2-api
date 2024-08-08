@@ -7,6 +7,8 @@ use App\Repositories\LandUseRepository;
 use App\Repositories\LandUseRepositoryInterface;
 use Mockery;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\PreserveGlobalState;
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use Tests\TestCase;
 
 class LandUseRepositoryTest extends TestCase
@@ -22,6 +24,8 @@ class LandUseRepositoryTest extends TestCase
     public function setUp(): void
     {
         $this->sut = new LandUseRepository();
+
+        parent::setUp();
     }
 
     /**
@@ -62,7 +66,10 @@ class LandUseRepositoryTest extends TestCase
      * @param int $landUseWhereInvokedTimes
      * @return void
      */
-    #[DataProvider('dataProvider')] public function testGetAllByPostalCodeAndCadastralColonyType(
+    #[PreserveGlobalState(false)]
+    #[RunInSeparateProcess]
+    #[DataProvider('dataProvider')]
+    public function testGetAllByPostalCodeAndCadastralColonyType(
         string $cadastralColonyType,
         int $landUseWhereInvokedTimes,
     ): void {
