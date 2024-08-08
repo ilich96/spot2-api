@@ -51,13 +51,13 @@ class LandUseServiceTest extends TestCase
     public function testGetUnitPrices(): void
     {
         $landUse = new LandUse();
-        $landPrice = $landUse->landPrice = 198.5;
-        $constructionLandPrice = $landUse->constructionLandPrice = 200.25;
-        $groundArea = $landUse->groundArea = 68955.64;
+        $landPrice = $landUse->land_price = 198.5;
+        $groundArea = $landUse->ground_area = 68955.64;
+        $constructionArea = $landUse->construction_area = 75004.44;
         $subsidy = $landUse->subsidy = 15.99;
 
         $unitPriceExpectedResult = ($landPrice / $groundArea) - $subsidy;
-        $unitPriceConstructionExpectedResult = ($constructionLandPrice / $groundArea) - $subsidy;
+        $unitPriceConstructionExpectedResult = ($landPrice / $constructionArea) - $subsidy;
 
         $result = $this->sut->getUnitPrices($landUse);
 

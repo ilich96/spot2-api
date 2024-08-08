@@ -5,6 +5,7 @@ namespace Repositories;
 use App\Models\LandUse;
 use App\Repositories\LandUseRepository;
 use App\Repositories\LandUseRepositoryInterface;
+use Illuminate\Support\Collection;
 use Mockery;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
@@ -85,13 +86,13 @@ class LandUseRepositoryTest extends TestCase
 
         $landUse->shouldReceive('get')
             ->times($landUseWhereInvokedTimes)
-            ->andReturn([]);
+            ->andReturn(collect());
 
         $result = $this->sut->getAllByPostalCodeAndCadastralColonyType(
             $postalCode,
             $cadastralColonyType,
         );
 
-        $this->assertIsArray($result);
+        $this->assertInstanceOf(Collection::class, $result);
     }
 }

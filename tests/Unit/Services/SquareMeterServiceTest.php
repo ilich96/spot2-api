@@ -7,6 +7,7 @@ use App\Repositories\LandUseRepositoryInterface;
 use App\Services\LandUseServiceInterface;
 use App\Services\SquareMeterService;
 use App\Services\SquareMeterServiceInterface;
+use Illuminate\Support\Collection;
 use Mockery;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
@@ -67,13 +68,13 @@ class SquareMeterServiceTest extends TestCase
         $postalCode = '8000';
         $cadastralColonyType = 'A';
         $landUse = new LandUse();
-        $landUseRepositoryResult = [
+        $landUseRepositoryResult = collect([
             $landUse,
             $landUse,
             $landUse,
             $landUse,
             $landUse,
-        ];
+        ]);
 
         $firstLandUseServiceResult = null;
 
@@ -159,7 +160,7 @@ class SquareMeterServiceTest extends TestCase
         $this->landUseRepository->shouldReceive('getAllByPostalCodeAndCadastralColonyType')
             ->with($postalCode, $cadastralColonyType)
             ->times($landUseRepositoryInvokedTimes)
-            ->andReturn([]);
+            ->andReturn(collect());
 
         $result = $this->sut->getAveragePriceByPostalCodeAndCadastralColonyType(
             $postalCode,
@@ -173,7 +174,7 @@ class SquareMeterServiceTest extends TestCase
      * @param string $postalCode
      * @param string $cadastralColonyType
      * @param LandUse $landUse
-     * @param array $landUseRepositoryResult
+     * @param Collection $landUseRepositoryResult
      * @param null $firstLandUseServiceResult
      * @param array $secondLandUseServiceResult
      * @param array $thirdLandUseServiceResult
@@ -186,7 +187,7 @@ class SquareMeterServiceTest extends TestCase
         string $postalCode,
         string $cadastralColonyType,
         LandUse $landUse,
-        array $landUseRepositoryResult,
+        Collection $landUseRepositoryResult,
         null $firstLandUseServiceResult,
         array $secondLandUseServiceResult,
         array $thirdLandUseServiceResult,
@@ -244,7 +245,7 @@ class SquareMeterServiceTest extends TestCase
         $this->landUseRepository->shouldReceive('getAllByPostalCodeAndCadastralColonyType')
             ->with($postalCode, $cadastralColonyType)
             ->times($landUseRepositoryInvokedTimes)
-            ->andReturn([]);
+            ->andReturn(collect());
 
         $result = $this->sut->getMaximumPriceByPostalCodeAndCadastralColonyType(
             $postalCode,
@@ -258,7 +259,7 @@ class SquareMeterServiceTest extends TestCase
      * @param string $postalCode
      * @param string $cadastralColonyType
      * @param LandUse $landUse
-     * @param array $landUseRepositoryResult
+     * @param Collection $landUseRepositoryResult
      * @param null $firstLandUseServiceResult
      * @param array $secondLandUseServiceResult
      * @param array $thirdLandUseServiceResult
@@ -271,7 +272,7 @@ class SquareMeterServiceTest extends TestCase
         string $postalCode,
         string $cadastralColonyType,
         LandUse $landUse,
-        array $landUseRepositoryResult,
+        Collection $landUseRepositoryResult,
         null $firstLandUseServiceResult,
         array $secondLandUseServiceResult,
         array $thirdLandUseServiceResult,
@@ -329,7 +330,7 @@ class SquareMeterServiceTest extends TestCase
         $this->landUseRepository->shouldReceive('getAllByPostalCodeAndCadastralColonyType')
             ->with($postalCode, $cadastralColonyType)
             ->times($landUseRepositoryInvokedTimes)
-            ->andReturn([]);
+            ->andReturn(collect());
 
         $result = $this->sut->getMinimumPriceByPostalCodeAndCadastralColonyType(
             $postalCode,
@@ -343,7 +344,7 @@ class SquareMeterServiceTest extends TestCase
      * @param string $postalCode
      * @param string $cadastralColonyType
      * @param LandUse $landUse
-     * @param array $landUseRepositoryResult
+     * @param Collection $landUseRepositoryResult
      * @param null $firstLandUseServiceResult
      * @param array $secondLandUseServiceResult
      * @param array $thirdLandUseServiceResult
@@ -356,7 +357,7 @@ class SquareMeterServiceTest extends TestCase
         string $postalCode,
         string $cadastralColonyType,
         LandUse $landUse,
-        array $landUseRepositoryResult,
+        Collection $landUseRepositoryResult,
         null $firstLandUseServiceResult,
         array $secondLandUseServiceResult,
         array $thirdLandUseServiceResult,

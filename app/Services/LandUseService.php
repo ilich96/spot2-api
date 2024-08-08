@@ -12,19 +12,19 @@ class LandUseService implements LandUseServiceInterface
      */
     public function getUnitPrices(LandUse $landUse): ?array
     {
-        $landPrice = $landUse->landPrice;
-        $constructionLandPrice = $landUse->constructionLandPrice;
-        $groundArea = $landUse->groundArea;
+        $landPrice = $landUse->land_price;
+        $groundArea = $landUse->ground_area;
+        $constructionArea = $landUse->construction_area;
         $subsidy = $landUse->subsidy;
 
         if (
             is_double($landPrice)
-            && is_double($constructionLandPrice)
             && is_double($groundArea)
+            && is_double($constructionArea)
             && is_double($subsidy)
         ) {
             $unitPrice = ($landPrice / $groundArea) - $subsidy;
-            $unitPriceConstruction = ($constructionLandPrice / $groundArea) - $subsidy;
+            $unitPriceConstruction = ($landPrice / $constructionArea) - $subsidy;
 
             return [
                 'unitPrice' => $unitPrice,
