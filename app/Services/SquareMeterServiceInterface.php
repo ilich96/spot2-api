@@ -6,19 +6,31 @@ interface SquareMeterServiceInterface
 {
     /**
      * @param string $postalCode
+     * @param string $cadastralColonyType
      * @return array|null
      */
-    public function getAveragePriceByPostalCode(string $postalCode): ?array;
+    public function getAveragePriceByPostalCodeAndCadastralColonyType(
+        string $postalCode,
+        string $cadastralColonyType,
+    ): ?array;
 
     /**
      * @param string $postalCode
+     * @param string $cadastralColonyType
      * @return array|null
      */
-    public function getMaximumPriceByPostalCode(string $postalCode): ?array;
+    public function getMaximumPriceByPostalCodeAndCadastralColonyType(
+        string $postalCode,
+        string $cadastralColonyType,
+    ): ?array;
 
     /**
      * @param string $postalCode
+     * @param string $cadastralColonyType
      * @return array|null
      */
-    public function getMinimumPriceByPostalCode(string $postalCode): ?array;
+    public function getMinimumPriceByPostalCodeAndCadastralColonyType(
+        string $postalCode,
+        string $cadastralColonyType,
+    ): ?array;
 }

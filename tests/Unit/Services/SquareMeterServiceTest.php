@@ -64,6 +64,7 @@ class SquareMeterServiceTest extends TestCase
     public static function dataProvider(): array
     {
         $postalCode = '8000';
+        $cadastralColonyType = 'A';
         $landUse = new LandUse();
         $landUseRepositoryResult = [
             $landUse,
@@ -113,6 +114,7 @@ class SquareMeterServiceTest extends TestCase
         return [
             "Dataset for average, maximum and minimum functions" => [
                 $postalCode,
+                $cadastralColonyType,
                 $landUse,
                 $landUseRepositoryResult,
                 $firstLandUseServiceResult,
@@ -126,23 +128,50 @@ class SquareMeterServiceTest extends TestCase
     }
 
     /**
+     * @return array[]
+     */
+    public static function dataProviderForReturnNullResult(): array
+    {
+        return [
+            "valid 'cadastralColonyType' value" => [
+                'A',
+                1,
+            ],
+            "invalid 'cadastralColonyType' value" => [
+                'H',
+                0,
+            ],
+        ];
+    }
+
+    /**
+     * @param string $cadastralColonyType
+     * @param int $landUseRepositoryInvokedTimes
      * @return void
      */
-    public function testGetAveragePriceByPostalCodeWithEmptyLandUses(): void
+    #[DataProvider('dataProviderForReturnNullResult')]
+    public function testGetAveragePriceByPostalCodeAndCadastralColonyTypeReturnsNull(
+        string $cadastralColonyType,
+        int $landUseRepositoryInvokedTimes,
+    ): void
     {
         $postalCode = '8000';
-        $this->landUseRepository->shouldReceive('getAllByPostalCode')
-            ->with($postalCode)
-            ->times(1)
+        $this->landUseRepository->shouldReceive('getAllByPostalCodeAndCadastralColonyType')
+            ->with($postalCode, $cadastralColonyType)
+            ->times($landUseRepositoryInvokedTimes)
             ->andReturn([]);
 
-        $result = $this->sut->getAveragePriceByPostalCode($postalCode);
+        $result = $this->sut->getAveragePriceByPostalCodeAndCadastralColonyType(
+            $postalCode,
+            $cadastralColonyType,
+        );
 
         $this->assertNull($result);
     }
 
     /**
      * @param string $postalCode
+     * @param string $cadastralColonyType
      * @param LandUse $landUse
      * @param array $landUseRepositoryResult
      * @param null $firstLandUseServiceResult
@@ -153,8 +182,9 @@ class SquareMeterServiceTest extends TestCase
      * @param array $expectedResults
      * @return void
      */
-    #[DataProvider('dataProvider')] public function testGetAveragePriceByPostalCode(
+    #[DataProvider('dataProvider')] public function testGetAveragePriceByPostalCodeAndCadastralColonyType(
         string $postalCode,
+        string $cadastralColonyType,
         LandUse $landUse,
         array $landUseRepositoryResult,
         null $firstLandUseServiceResult,
@@ -164,8 +194,8 @@ class SquareMeterServiceTest extends TestCase
         array $fifthLandUseServiceResult,
         array $expectedResults,
     ): void {
-        $this->landUseRepository->shouldReceive('getAllByPostalCode')
-            ->with($postalCode)
+        $this->landUseRepository->shouldReceive('getAllByPostalCodeAndCadastralColonyType')
+            ->with($postalCode, $cadastralColonyType)
             ->times(1)
             ->andReturn($landUseRepositoryResult);
 
@@ -180,7 +210,10 @@ class SquareMeterServiceTest extends TestCase
                 $fifthLandUseServiceResult,
             );
 
-        $result = $this->sut->getAveragePriceByPostalCode($postalCode);
+        $result = $this->sut->getAveragePriceByPostalCodeAndCadastralColonyType(
+            $postalCode,
+            $cadastralColonyType,
+        );
 
         $this->assertIsArray($result);
         $this->assertArrayHasKey('averageUnitPrice', $result);
@@ -198,23 +231,33 @@ class SquareMeterServiceTest extends TestCase
     }
 
     /**
+     * @param string $cadastralColonyType
+     * @param int $landUseRepositoryInvokedTimes
      * @return void
      */
-    public function testGetMaximumPriceByPostalCodeWithEmptyLandUses(): void
+    #[DataProvider('dataProviderForReturnNullResult')]
+    public function testGetMaximumPriceByPostalCodeAndCadastralColonyTypeReturnsNull(
+        string $cadastralColonyType,
+        int $landUseRepositoryInvokedTimes,
+    ): void
     {
         $postalCode = '8000';
-        $this->landUseRepository->shouldReceive('getAllByPostalCode')
-            ->with($postalCode)
-            ->times(1)
+        $this->landUseRepository->shouldReceive('getAllByPostalCodeAndCadastralColonyType')
+            ->with($postalCode, $cadastralColonyType)
+            ->times($landUseRepositoryInvokedTimes)
             ->andReturn([]);
 
-        $result = $this->sut->getMaximumPriceByPostalCode($postalCode);
+        $result = $this->sut->getMaximumPriceByPostalCodeAndCadastralColonyType(
+            $postalCode,
+            $cadastralColonyType,
+        );
 
         $this->assertNull($result);
     }
 
     /**
      * @param string $postalCode
+     * @param string $cadastralColonyType
      * @param LandUse $landUse
      * @param array $landUseRepositoryResult
      * @param null $firstLandUseServiceResult
@@ -225,8 +268,9 @@ class SquareMeterServiceTest extends TestCase
      * @param array $expectedResults
      * @return void
      */
-    #[DataProvider('dataProvider')] public function testGetMaximumPriceByPostalCode(
+    #[DataProvider('dataProvider')] public function testGetMaximumPriceByPostalCodeAndCadastralColonyType(
         string $postalCode,
+        string $cadastralColonyType,
         LandUse $landUse,
         array $landUseRepositoryResult,
         null $firstLandUseServiceResult,
@@ -236,8 +280,8 @@ class SquareMeterServiceTest extends TestCase
         array $fifthLandUseServiceResult,
         array $expectedResults,
     ): void {
-        $this->landUseRepository->shouldReceive('getAllByPostalCode')
-            ->with($postalCode)
+        $this->landUseRepository->shouldReceive('getAllByPostalCodeAndCadastralColonyType')
+            ->with($postalCode, $cadastralColonyType)
             ->times(1)
             ->andReturn($landUseRepositoryResult);
 
@@ -252,7 +296,10 @@ class SquareMeterServiceTest extends TestCase
                 $fifthLandUseServiceResult,
             );
 
-        $result = $this->sut->getMaximumPriceByPostalCode($postalCode);
+        $result = $this->sut->getMaximumPriceByPostalCodeAndCadastralColonyType(
+            $postalCode,
+            $cadastralColonyType,
+        );
 
         $this->assertIsArray($result);
         $this->assertArrayHasKey('maximumUnitPrice', $result);
@@ -270,23 +317,33 @@ class SquareMeterServiceTest extends TestCase
     }
 
     /**
+     * @param string $cadastralColonyType
+     * @param int $landUseRepositoryInvokedTimes
      * @return void
      */
-    public function testGetMinimumPriceByPostalCodeWithEmptyLandUses(): void
+    #[DataProvider('dataProviderForReturnNullResult')]
+    public function testGetMinimumPriceByPostalCodeAndCadastralColonyTypeReturnsNull(
+        string $cadastralColonyType,
+        int $landUseRepositoryInvokedTimes,
+    ): void
     {
         $postalCode = '8000';
-        $this->landUseRepository->shouldReceive('getAllByPostalCode')
-            ->with($postalCode)
-            ->times(1)
+        $this->landUseRepository->shouldReceive('getAllByPostalCodeAndCadastralColonyType')
+            ->with($postalCode, $cadastralColonyType)
+            ->times($landUseRepositoryInvokedTimes)
             ->andReturn([]);
 
-        $result = $this->sut->getMinimumPriceByPostalCode($postalCode);
+        $result = $this->sut->getMinimumPriceByPostalCodeAndCadastralColonyType(
+            $postalCode,
+            $cadastralColonyType,
+        );
 
         $this->assertNull($result);
     }
 
     /**
      * @param string $postalCode
+     * @param string $cadastralColonyType
      * @param LandUse $landUse
      * @param array $landUseRepositoryResult
      * @param null $firstLandUseServiceResult
@@ -297,8 +354,9 @@ class SquareMeterServiceTest extends TestCase
      * @param array $expectedResults
      * @return void
      */
-    #[DataProvider('dataProvider')] public function testGetMinimumPriceByPostalCode(
+    #[DataProvider('dataProvider')] public function testGetMinimumPriceByPostalCodeAndCadastralColonyType(
         string $postalCode,
+        string $cadastralColonyType,
         LandUse $landUse,
         array $landUseRepositoryResult,
         null $firstLandUseServiceResult,
@@ -308,8 +366,8 @@ class SquareMeterServiceTest extends TestCase
         array $fifthLandUseServiceResult,
         array $expectedResults,
     ): void {
-        $this->landUseRepository->shouldReceive('getAllByPostalCode')
-            ->with($postalCode)
+        $this->landUseRepository->shouldReceive('getAllByPostalCodeAndCadastralColonyType')
+            ->with($postalCode, $cadastralColonyType)
             ->times(1)
             ->andReturn($landUseRepositoryResult);
 
@@ -324,7 +382,10 @@ class SquareMeterServiceTest extends TestCase
                 $fifthLandUseServiceResult,
             );
 
-        $result = $this->sut->getMinimumPriceByPostalCode($postalCode);
+        $result = $this->sut->getMinimumPriceByPostalCodeAndCadastralColonyType(
+            $postalCode,
+            $cadastralColonyType,
+        );
 
         $this->assertIsArray($result);
         $this->assertArrayHasKey('minimumUnitPrice', $result);

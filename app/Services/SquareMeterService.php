@@ -8,6 +8,12 @@ use function igorw\get_in;
 
 class SquareMeterService implements SquareMeterServiceInterface
 {
+    const CADASTRAL_COLONY_TYPES = [
+        'A',
+        'C',
+        'E',
+    ];
+
     /**
      * @param LandUseRepositoryInterface $landUseRepository
      * @param LandUseServiceInterface $landUseService
@@ -20,11 +26,21 @@ class SquareMeterService implements SquareMeterServiceInterface
 
     /**
      * @param string $postalCode
+     * @param string $cadastralColonyType
      * @return array|null
      */
-    public function getAveragePriceByPostalCode(string $postalCode): ?array
-    {
-        $landUses = $this->landUseRepository->getAllByPostalCode($postalCode);
+    public function getAveragePriceByPostalCodeAndCadastralColonyType(
+        string $postalCode,
+        string $cadastralColonyType,
+    ): ?array {
+        if (!in_array($cadastralColonyType, self::CADASTRAL_COLONY_TYPES)) {
+            return null;
+        }
+
+        $landUses = $this->landUseRepository->getAllByPostalCodeAndCadastralColonyType(
+            $postalCode,
+            $cadastralColonyType,
+        );
         if (count($landUses) === 0) {
             return null;
         }
@@ -56,11 +72,21 @@ class SquareMeterService implements SquareMeterServiceInterface
 
     /**
      * @param string $postalCode
+     * @param string $cadastralColonyType
      * @return array|null
      */
-    public function getMaximumPriceByPostalCode(string $postalCode): ?array
-    {
-        $landUses = $this->landUseRepository->getAllByPostalCode($postalCode);
+    public function getMaximumPriceByPostalCodeAndCadastralColonyType(
+        string $postalCode,
+        string $cadastralColonyType,
+    ): ?array {
+        if (!in_array($cadastralColonyType, self::CADASTRAL_COLONY_TYPES)) {
+            return null;
+        }
+
+        $landUses = $this->landUseRepository->getAllByPostalCodeAndCadastralColonyType(
+            $postalCode,
+            $cadastralColonyType,
+        );
         if (count($landUses) === 0) {
             return null;
         }
@@ -97,11 +123,21 @@ class SquareMeterService implements SquareMeterServiceInterface
 
     /**
      * @param string $postalCode
+     * @param string $cadastralColonyType
      * @return array|null
      */
-    public function getMinimumPriceByPostalCode(string $postalCode): ?array
-    {
-        $landUses = $this->landUseRepository->getAllByPostalCode($postalCode);
+    public function getMinimumPriceByPostalCodeAndCadastralColonyType(
+        string $postalCode,
+        string $cadastralColonyType,
+    ): ?array {
+        if (!in_array($cadastralColonyType, self::CADASTRAL_COLONY_TYPES)) {
+            return null;
+        }
+
+        $landUses = $this->landUseRepository->getAllByPostalCodeAndCadastralColonyType(
+            $postalCode,
+            $cadastralColonyType,
+        );
         if (count($landUses) === 0) {
             return null;
         }
