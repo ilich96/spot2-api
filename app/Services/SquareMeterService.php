@@ -8,7 +8,7 @@ use function igorw\get_in;
 
 class SquareMeterService implements SquareMeterServiceInterface
 {
-    const CADASTRAL_COLONY_TYPES = [
+    private const CADASTRAL_COLONY_TYPES = [
         'A',
         'C',
         'E',
