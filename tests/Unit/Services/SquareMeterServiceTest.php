@@ -6,6 +6,7 @@ use App\Models\LandUse;
 use App\Repositories\LandUseRepositoryInterface;
 use App\Services\LandUseServiceInterface;
 use App\Services\SquareMeterService;
+use App\Services\SquareMeterServiceInterface;
 use Mockery;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
@@ -13,9 +14,9 @@ use Tests\TestCase;
 class SquareMeterServiceTest extends TestCase
 {
     /**
-     * @var SquareMeterService|null $sut
+     * @var SquareMeterServiceInterface|null $sut
      */
-    private ?SquareMeterService $sut;
+    private ?SquareMeterServiceInterface $sut;
 
     /**
      * @var LandUseRepositoryInterface|null $landUseRepository
