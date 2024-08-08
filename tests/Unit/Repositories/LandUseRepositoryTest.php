@@ -22,8 +22,6 @@ class LandUseRepositoryTest extends TestCase
     public function setUp(): void
     {
         $this->sut = new LandUseRepository();
-
-        parent::setUp();
     }
 
     /**
