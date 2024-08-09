@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Integration;
+
 use Database\Seeders\LandUseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\DataProvider;
