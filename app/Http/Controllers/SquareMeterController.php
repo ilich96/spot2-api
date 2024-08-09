@@ -20,10 +20,10 @@ class SquareMeterController extends Controller
      * @param SquareMeterServiceInterface $squareMeterService
      */
     public function __construct(
-        protected ZipCodeValidator             $zipCodeValidator,
-        protected AggregateTypeValidator       $aggregateTypeValidator,
+        protected ZipCodeValidator $zipCodeValidator,
+        protected AggregateTypeValidator $aggregateTypeValidator,
         protected CadastralColonyTypeValidator $cadastralColonyTypeValidator,
-        protected SquareMeterServiceInterface  $squareMeterService,
+        protected SquareMeterServiceInterface $squareMeterService,
     ) {
     }
 
