@@ -12,12 +12,12 @@ class LandUseRepository implements LandUseRepositoryInterface
     private const ENCLAVE_COLONY_TYPE_VALUE = 'E';
 
     /**
-     * @param string $postalCode
+     * @param string $zipCode
      * @param string $cadastralColonyType
      * @return Collection
      */
-    public function getAllByPostalCodeAndCadastralColonyType(
-        string $postalCode,
+    public function getAllByZipCodeAndCadastralColonyType(
+        string $zipCode,
         string $cadastralColonyType,
     ): Collection {
         $areaColonyTypeValue = self::AREA_COLONY_TYPE_VALUE;
@@ -26,11 +26,11 @@ class LandUseRepository implements LandUseRepositoryInterface
 
         return match ($cadastralColonyType) {
             $areaColonyTypeValue =>
-                LandUse::where('postal_code', $postalCode)->where('area_colony_type', $areaColonyTypeValue)->get(),
+                LandUse::where('zip_code', $zipCode)->where('area_colony_type', $areaColonyTypeValue)->get(),
             $corridorColonyTypeValue =>
-                LandUse::where('postal_code', $postalCode)->where('area_colony_type', $corridorColonyTypeValue)->get(),
+                LandUse::where('zip_code', $zipCode)->where('area_colony_type', $corridorColonyTypeValue)->get(),
             $enclaveColonyTypeValue =>
-                LandUse::where('postal_code', $postalCode)->where('area_colony_type', $enclaveColonyTypeValue)->get(),
+                LandUse::where('zip_code', $zipCode)->where('area_colony_type', $enclaveColonyTypeValue)->get(),
             default => collect(),
         };
     }

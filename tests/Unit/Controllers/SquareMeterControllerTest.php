@@ -7,7 +7,7 @@ use App\Http\Controllers\SquareMeterController;
 use App\Services\SquareMeterServiceInterface;
 use App\Validators\AggregateTypeValidator;
 use App\Validators\CadastralColonyTypeValidator;
-use App\Validators\PostalCodeValidator;
+use App\Validators\ZipCodeValidator;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Mockery;
@@ -22,9 +22,9 @@ class SquareMeterControllerTest extends TestCase
     private ?Controller $sut;
 
     /**
-     * @var PostalCodeValidator|null $postalCodeValidator
+     * @var ZipCodeValidator|null $zipCodeValidator
      */
-    private ?PostalCodeValidator $postalCodeValidator;
+    private ?ZipCodeValidator $zipCodeValidator;
 
     /**
      * @var AggregateTypeValidator|null $aggregateTypeValidator
@@ -46,8 +46,8 @@ class SquareMeterControllerTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->postalCodeValidator = Mockery::mock(
-            PostalCodeValidator::class
+        $this->zipCodeValidator = Mockery::mock(
+            ZipCodeValidator::class
         );
         $this->aggregateTypeValidator = Mockery::mock(
             AggregateTypeValidator::class
@@ -60,7 +60,7 @@ class SquareMeterControllerTest extends TestCase
         );
 
         $this->sut = new SquareMeterController(
-            $this->postalCodeValidator,
+            $this->zipCodeValidator,
             $this->aggregateTypeValidator,
             $this->cadastralColonyTypeValidator,
             $this->squareMeterService,
@@ -86,7 +86,7 @@ class SquareMeterControllerTest extends TestCase
     public static function dataProvider(): array
     {
         return [
-            "'postalCodeValidator' returns false" => [
+            "'zipCodeValidator' returns false" => [
                 1,
                 false,
                 1,
@@ -210,9 +210,9 @@ class SquareMeterControllerTest extends TestCase
     }
 
     /**
-     * @param int $postalCodeValidatorValidateInvokedTimes
-     * @param bool $postalCodeValidatorValidateResult
-     * @param int $postalCodeValidatorGetMessagesInvokedTimes
+     * @param int $zipCodeValidatorValidateInvokedTimes
+     * @param bool $zipCodeValidatorValidateResult
+     * @param int $zipCodeValidatorGetMessagesInvokedTimes
      * @param int $aggregateTypeValidatorValidateInvokedTimes
      * @param bool $aggregateTypeValidatorValidateResult
      * @param int $aggregateTypeValidatorGetMessagesInvokedTimes
@@ -231,9 +231,9 @@ class SquareMeterControllerTest extends TestCase
      * @return void
      */
     #[DataProvider('dataProvider')] public function testIndex(
-        int $postalCodeValidatorValidateInvokedTimes,
-        bool $postalCodeValidatorValidateResult,
-        int $postalCodeValidatorGetMessagesInvokedTimes,
+        int $zipCodeValidatorValidateInvokedTimes,
+        bool $zipCodeValidatorValidateResult,
+        int $zipCodeValidatorGetMessagesInvokedTimes,
         int $aggregateTypeValidatorValidateInvokedTimes,
         bool $aggregateTypeValidatorValidateResult,
         int $aggregateTypeValidatorGetMessagesInvokedTimes,
@@ -250,11 +250,11 @@ class SquareMeterControllerTest extends TestCase
         string $aggregateType,
         int $expectedStatusCode,
     ): void {
-        $this->postalCodeValidator->shouldReceive('isValid')
-            ->times($postalCodeValidatorValidateInvokedTimes)
-            ->andReturn($postalCodeValidatorValidateResult);
-        $this->postalCodeValidator->shouldReceive('getErrorMessage')
-            ->times($postalCodeValidatorGetMessagesInvokedTimes);
+        $this->zipCodeValidator->shouldReceive('isValid')
+            ->times($zipCodeValidatorValidateInvokedTimes)
+            ->andReturn($zipCodeValidatorValidateResult);
+        $this->zipCodeValidator->shouldReceive('getErrorMessage')
+            ->times($zipCodeValidatorGetMessagesInvokedTimes);
 
         $this->aggregateTypeValidator->shouldReceive('isValid')
             ->times($aggregateTypeValidatorValidateInvokedTimes)
@@ -273,15 +273,15 @@ class SquareMeterControllerTest extends TestCase
         $this->cadastralColonyTypeValidator->shouldReceive('getErrorMessage')
             ->times($cadastralColonyTypeValidatorGetMessagesInvokedTimes);
 
-        $this->squareMeterService->shouldReceive('getAveragePriceByPostalCodeAndCadastralColonyType')
+        $this->squareMeterService->shouldReceive('getAveragePriceByZipCodeAndCadastralColonyType')
             ->times($squareMeterGetAverageInvokedTimes)
             ->andReturn($squareMeterGetAverageResult);
 
-        $this->squareMeterService->shouldReceive('getMaximumPriceByPostalCodeAndCadastralColonyType')
+        $this->squareMeterService->shouldReceive('getMaximumPriceByZipCodeAndCadastralColonyType')
             ->times($squareMeterGetMaximumInvokedTimes)
             ->andReturn($squareMeterGetMaximumResult);
 
-        $this->squareMeterService->shouldReceive('getMinimumPriceByPostalCodeAndCadastralColonyType')
+        $this->squareMeterService->shouldReceive('getMinimumPriceByZipCodeAndCadastralColonyType')
             ->times($squareMeterGetMinimumInvokedTimes)
             ->andReturn($squareMeterGetMinimumResult);
 

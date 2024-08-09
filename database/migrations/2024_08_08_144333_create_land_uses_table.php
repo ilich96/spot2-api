@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('land_uses', function (Blueprint $table) {
             $table->id();
-            $table->string('postal_code');
+            $table->string('zip_code');
             $table->char('area_colony_type', 1);
             $table->float('land_price');
             $table->float('ground_area');

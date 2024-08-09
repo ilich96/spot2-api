@@ -65,7 +65,7 @@ class SquareMeterServiceTest extends TestCase
      */
     public static function dataProvider(): array
     {
-        $postalCode = '8000';
+        $zipCode = '8000';
         $cadastralColonyType = 'A';
         $landUse = new LandUse();
         $landUseRepositoryResult = collect([
@@ -115,7 +115,7 @@ class SquareMeterServiceTest extends TestCase
 
         return [
             "Dataset for average, maximum and minimum functions" => [
-                $postalCode,
+                $zipCode,
                 $cadastralColonyType,
                 $landUse,
                 $landUseRepositoryResult,
@@ -152,18 +152,18 @@ class SquareMeterServiceTest extends TestCase
      * @return void
      */
     #[DataProvider('dataProviderForReturnNullResult')]
-    public function testGetAveragePriceByPostalCodeAndCadastralColonyTypeReturnsNull(
+    public function testGetAveragePriceByZipCodeAndCadastralColonyTypeReturnsNull(
         string $cadastralColonyType,
         int $landUseRepositoryInvokedTimes,
     ): void {
-        $postalCode = '8000';
-        $this->landUseRepository->shouldReceive('getAllByPostalCodeAndCadastralColonyType')
-            ->with($postalCode, $cadastralColonyType)
+        $zipCode = '8000';
+        $this->landUseRepository->shouldReceive('getAllByZipCodeAndCadastralColonyType')
+            ->with($zipCode, $cadastralColonyType)
             ->times($landUseRepositoryInvokedTimes)
             ->andReturn(collect());
 
-        $result = $this->sut->getAveragePriceByPostalCodeAndCadastralColonyType(
-            $postalCode,
+        $result = $this->sut->getAveragePriceByZipCodeAndCadastralColonyType(
+            $zipCode,
             $cadastralColonyType,
         );
 
@@ -171,7 +171,7 @@ class SquareMeterServiceTest extends TestCase
     }
 
     /**
-     * @param string $postalCode
+     * @param string $zipCode
      * @param string $cadastralColonyType
      * @param LandUse $landUse
      * @param Collection $landUseRepositoryResult
@@ -183,8 +183,8 @@ class SquareMeterServiceTest extends TestCase
      * @param array $expectedResults
      * @return void
      */
-    #[DataProvider('dataProvider')] public function testGetAveragePriceByPostalCodeAndCadastralColonyType(
-        string $postalCode,
+    #[DataProvider('dataProvider')] public function testGetAveragePriceByZipCodeAndCadastralColonyType(
+        string $zipCode,
         string $cadastralColonyType,
         LandUse $landUse,
         Collection $landUseRepositoryResult,
@@ -195,8 +195,8 @@ class SquareMeterServiceTest extends TestCase
         array $fifthLandUseServiceResult,
         array $expectedResults,
     ): void {
-        $this->landUseRepository->shouldReceive('getAllByPostalCodeAndCadastralColonyType')
-            ->with($postalCode, $cadastralColonyType)
+        $this->landUseRepository->shouldReceive('getAllByZipCodeAndCadastralColonyType')
+            ->with($zipCode, $cadastralColonyType)
             ->times(1)
             ->andReturn($landUseRepositoryResult);
 
@@ -211,8 +211,8 @@ class SquareMeterServiceTest extends TestCase
                 $fifthLandUseServiceResult,
             );
 
-        $result = $this->sut->getAveragePriceByPostalCodeAndCadastralColonyType(
-            $postalCode,
+        $result = $this->sut->getAveragePriceByZipCodeAndCadastralColonyType(
+            $zipCode,
             $cadastralColonyType,
         );
 
@@ -237,18 +237,18 @@ class SquareMeterServiceTest extends TestCase
      * @return void
      */
     #[DataProvider('dataProviderForReturnNullResult')]
-    public function testGetMaximumPriceByPostalCodeAndCadastralColonyTypeReturnsNull(
+    public function testGetMaximumPriceByZipCodeAndCadastralColonyTypeReturnsNull(
         string $cadastralColonyType,
         int $landUseRepositoryInvokedTimes,
     ): void {
-        $postalCode = '8000';
-        $this->landUseRepository->shouldReceive('getAllByPostalCodeAndCadastralColonyType')
-            ->with($postalCode, $cadastralColonyType)
+        $zipCode = '8000';
+        $this->landUseRepository->shouldReceive('getAllByZipCodeAndCadastralColonyType')
+            ->with($zipCode, $cadastralColonyType)
             ->times($landUseRepositoryInvokedTimes)
             ->andReturn(collect());
 
-        $result = $this->sut->getMaximumPriceByPostalCodeAndCadastralColonyType(
-            $postalCode,
+        $result = $this->sut->getMaximumPriceByZipCodeAndCadastralColonyType(
+            $zipCode,
             $cadastralColonyType,
         );
 
@@ -256,7 +256,7 @@ class SquareMeterServiceTest extends TestCase
     }
 
     /**
-     * @param string $postalCode
+     * @param string $zipCode
      * @param string $cadastralColonyType
      * @param LandUse $landUse
      * @param Collection $landUseRepositoryResult
@@ -268,8 +268,8 @@ class SquareMeterServiceTest extends TestCase
      * @param array $expectedResults
      * @return void
      */
-    #[DataProvider('dataProvider')] public function testGetMaximumPriceByPostalCodeAndCadastralColonyType(
-        string $postalCode,
+    #[DataProvider('dataProvider')] public function testGetMaximumPriceByZipCodeAndCadastralColonyType(
+        string $zipCode,
         string $cadastralColonyType,
         LandUse $landUse,
         Collection $landUseRepositoryResult,
@@ -280,8 +280,8 @@ class SquareMeterServiceTest extends TestCase
         array $fifthLandUseServiceResult,
         array $expectedResults,
     ): void {
-        $this->landUseRepository->shouldReceive('getAllByPostalCodeAndCadastralColonyType')
-            ->with($postalCode, $cadastralColonyType)
+        $this->landUseRepository->shouldReceive('getAllByZipCodeAndCadastralColonyType')
+            ->with($zipCode, $cadastralColonyType)
             ->times(1)
             ->andReturn($landUseRepositoryResult);
 
@@ -296,8 +296,8 @@ class SquareMeterServiceTest extends TestCase
                 $fifthLandUseServiceResult,
             );
 
-        $result = $this->sut->getMaximumPriceByPostalCodeAndCadastralColonyType(
-            $postalCode,
+        $result = $this->sut->getMaximumPriceByZipCodeAndCadastralColonyType(
+            $zipCode,
             $cadastralColonyType,
         );
 
@@ -322,18 +322,18 @@ class SquareMeterServiceTest extends TestCase
      * @return void
      */
     #[DataProvider('dataProviderForReturnNullResult')]
-    public function testGetMinimumPriceByPostalCodeAndCadastralColonyTypeReturnsNull(
+    public function testGetMinimumPriceByZipCodeAndCadastralColonyTypeReturnsNull(
         string $cadastralColonyType,
         int $landUseRepositoryInvokedTimes,
     ): void {
-        $postalCode = '8000';
-        $this->landUseRepository->shouldReceive('getAllByPostalCodeAndCadastralColonyType')
-            ->with($postalCode, $cadastralColonyType)
+        $zipCode = '8000';
+        $this->landUseRepository->shouldReceive('getAllByZipCodeAndCadastralColonyType')
+            ->with($zipCode, $cadastralColonyType)
             ->times($landUseRepositoryInvokedTimes)
             ->andReturn(collect());
 
-        $result = $this->sut->getMinimumPriceByPostalCodeAndCadastralColonyType(
-            $postalCode,
+        $result = $this->sut->getMinimumPriceByZipCodeAndCadastralColonyType(
+            $zipCode,
             $cadastralColonyType,
         );
 
@@ -341,7 +341,7 @@ class SquareMeterServiceTest extends TestCase
     }
 
     /**
-     * @param string $postalCode
+     * @param string $zipCode
      * @param string $cadastralColonyType
      * @param LandUse $landUse
      * @param Collection $landUseRepositoryResult
@@ -353,8 +353,8 @@ class SquareMeterServiceTest extends TestCase
      * @param array $expectedResults
      * @return void
      */
-    #[DataProvider('dataProvider')] public function testGetMinimumPriceByPostalCodeAndCadastralColonyType(
-        string $postalCode,
+    #[DataProvider('dataProvider')] public function testGetMinimumPriceByZipCodeAndCadastralColonyType(
+        string $zipCode,
         string $cadastralColonyType,
         LandUse $landUse,
         Collection $landUseRepositoryResult,
@@ -365,8 +365,8 @@ class SquareMeterServiceTest extends TestCase
         array $fifthLandUseServiceResult,
         array $expectedResults,
     ): void {
-        $this->landUseRepository->shouldReceive('getAllByPostalCodeAndCadastralColonyType')
-            ->with($postalCode, $cadastralColonyType)
+        $this->landUseRepository->shouldReceive('getAllByZipCodeAndCadastralColonyType')
+            ->with($zipCode, $cadastralColonyType)
             ->times(1)
             ->andReturn($landUseRepositoryResult);
 
@@ -381,8 +381,8 @@ class SquareMeterServiceTest extends TestCase
                 $fifthLandUseServiceResult,
             );
 
-        $result = $this->sut->getMinimumPriceByPostalCodeAndCadastralColonyType(
-            $postalCode,
+        $result = $this->sut->getMinimumPriceByZipCodeAndCadastralColonyType(
+            $zipCode,
             $cadastralColonyType,
         );
 

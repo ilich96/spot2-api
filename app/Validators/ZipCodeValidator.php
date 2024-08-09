@@ -2,7 +2,7 @@
 
 namespace App\Validators;
 
-class PostalCodeValidator implements ValidatorInterface
+class ZipCodeValidator implements ValidatorInterface
 {
     /**
      * @var string|null $errorMessage
@@ -12,7 +12,7 @@ class PostalCodeValidator implements ValidatorInterface
     public function isValid(mixed $data): bool
     {
         if (!is_string($data)) {
-            $this->errorMessage = 'postalCode should be a string.';
+            $this->errorMessage = 'zipCode should be a string.';
 
             return false;
         }

@@ -37,20 +37,20 @@ class SquareMeterService implements SquareMeterServiceInterface
     }
 
     /**
-     * @param string $postalCode
+     * @param string $zipCode
      * @param string $cadastralColonyType
      * @return array|null
      */
-    public function getAveragePriceByPostalCodeAndCadastralColonyType(
-        string $postalCode,
+    public function getAveragePriceByZipCodeAndCadastralColonyType(
+        string $zipCode,
         string $cadastralColonyType,
     ): ?array {
         if (!in_array($cadastralColonyType, self::CADASTRAL_COLONY_TYPES)) {
             return null;
         }
 
-        $landUses = $this->landUseRepository->getAllByPostalCodeAndCadastralColonyType(
-            $postalCode,
+        $landUses = $this->landUseRepository->getAllByZipCodeAndCadastralColonyType(
+            $zipCode,
             $cadastralColonyType,
         );
         if (count($landUses) === 0) {
@@ -83,20 +83,20 @@ class SquareMeterService implements SquareMeterServiceInterface
     }
 
     /**
-     * @param string $postalCode
+     * @param string $zipCode
      * @param string $cadastralColonyType
      * @return array|null
      */
-    public function getMaximumPriceByPostalCodeAndCadastralColonyType(
-        string $postalCode,
+    public function getMaximumPriceByZipCodeAndCadastralColonyType(
+        string $zipCode,
         string $cadastralColonyType,
     ): ?array {
         if (!in_array($cadastralColonyType, self::CADASTRAL_COLONY_TYPES)) {
             return null;
         }
 
-        $landUses = $this->landUseRepository->getAllByPostalCodeAndCadastralColonyType(
-            $postalCode,
+        $landUses = $this->landUseRepository->getAllByZipCodeAndCadastralColonyType(
+            $zipCode,
             $cadastralColonyType,
         );
         if (count($landUses) === 0) {
@@ -134,20 +134,20 @@ class SquareMeterService implements SquareMeterServiceInterface
     }
 
     /**
-     * @param string $postalCode
+     * @param string $zipCode
      * @param string $cadastralColonyType
      * @return array|null
      */
-    public function getMinimumPriceByPostalCodeAndCadastralColonyType(
-        string $postalCode,
+    public function getMinimumPriceByZipCodeAndCadastralColonyType(
+        string $zipCode,
         string $cadastralColonyType,
     ): ?array {
         if (!in_array($cadastralColonyType, self::CADASTRAL_COLONY_TYPES)) {
             return null;
         }
 
-        $landUses = $this->landUseRepository->getAllByPostalCodeAndCadastralColonyType(
-            $postalCode,
+        $landUses = $this->landUseRepository->getAllByZipCodeAndCadastralColonyType(
+            $zipCode,
             $cadastralColonyType,
         );
         if (count($landUses) === 0) {

@@ -34,7 +34,7 @@ class SquareMeterControllerTest extends TestCase
                 'invalidCadastralColonyType',
                 400,
             ],
-            "There are no records in the database with the 'postalCode' value" => [
+            "There are no records in the database with the 'zipCode' value" => [
                 '12345',
                 'avg',
                 'A',
@@ -62,13 +62,13 @@ class SquareMeterControllerTest extends TestCase
     }
 
     #[DataProvider('dataProvider')] public function testSquareMeterRequest(
-        string $postalCode,
+        string $zipCode,
         string $aggregateType,
         string $areaColonyType,
         int $expectedStatusCode,
     ): void {
         $squareMeterUrl
-            = '/api/price-m2/zip-codes/' . $postalCode . '/aggregate/' . $aggregateType . '?cve_vus=' . $areaColonyType;
+            = '/api/price-m2/zip-codes/' . $zipCode . '/aggregate/' . $aggregateType . '?cve_vus=' . $areaColonyType;
 
         $response = $this->getJson($squareMeterUrl);
 

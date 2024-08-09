@@ -5,32 +5,32 @@ namespace App\Services;
 interface SquareMeterServiceInterface
 {
     /**
-     * @param string $postalCode
+     * @param string $zipCode
      * @param string $cadastralColonyType
      * @return array|null
      */
-    public function getAveragePriceByPostalCodeAndCadastralColonyType(
-        string $postalCode,
+    public function getAveragePriceByZipCodeAndCadastralColonyType(
+        string $zipCode,
         string $cadastralColonyType,
     ): ?array;
 
     /**
-     * @param string $postalCode
+     * @param string $zipCode
      * @param string $cadastralColonyType
      * @return array|null
      */
-    public function getMaximumPriceByPostalCodeAndCadastralColonyType(
-        string $postalCode,
+    public function getMaximumPriceByZipCodeAndCadastralColonyType(
+        string $zipCode,
         string $cadastralColonyType,
     ): ?array;
 
     /**
-     * @param string $postalCode
+     * @param string $zipCode
      * @param string $cadastralColonyType
      * @return array|null
      */
-    public function getMinimumPriceByPostalCodeAndCadastralColonyType(
-        string $postalCode,
+    public function getMinimumPriceByZipCodeAndCadastralColonyType(
+        string $zipCode,
         string $cadastralColonyType,
     ): ?array;
 }

@@ -2,13 +2,13 @@
 
 namespace Tests\Unit\Validators;
 
-use App\Validators\PostalCodeValidator;
+use App\Validators\ZipCodeValidator;
 use App\Validators\ValidatorInterface;
 use Mockery;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
-class PostalCodeValidatorTest extends TestCase
+class ZipCodeValidatorTest extends TestCase
 {
     /**
      * @var ValidatorInterface|null $sut
@@ -20,7 +20,7 @@ class PostalCodeValidatorTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->sut = new PostalCodeValidator();
+        $this->sut = new ZipCodeValidator();
 
         parent::setUp();
     }

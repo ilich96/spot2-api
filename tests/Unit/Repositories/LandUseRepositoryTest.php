@@ -70,11 +70,11 @@ class LandUseRepositoryTest extends TestCase
     #[PreserveGlobalState(false)]
     #[RunInSeparateProcess]
     #[DataProvider('dataProvider')]
-    public function testGetAllByPostalCodeAndCadastralColonyType(
+    public function testGetAllByZipCodeAndCadastralColonyType(
         string $cadastralColonyType,
         int $landUseWhereInvokedTimes,
     ): void {
-        $postalCode = '8000';
+        $zipCode = '8000';
         $landUse = Mockery::mock('alias:' . LandUse::class);
         $landUse->shouldReceive('where')
             ->times($landUseWhereInvokedTimes)
@@ -88,8 +88,8 @@ class LandUseRepositoryTest extends TestCase
             ->times($landUseWhereInvokedTimes)
             ->andReturn(collect());
 
-        $result = $this->sut->getAllByPostalCodeAndCadastralColonyType(
-            $postalCode,
+        $result = $this->sut->getAllByZipCodeAndCadastralColonyType(
+            $zipCode,
             $cadastralColonyType,
         );
 

@@ -41,12 +41,12 @@ class SquareMeterServiceTest extends TestCase
     }
 
     /**
-     * @param string $postalCode
+     * @param string $zipCode
      * @param string $areaColonyType
      * @return void
      */
     #[DataProvider('dataProvider')] public function testAveragePrice(
-        string $postalCode,
+        string $zipCode,
         string $areaColonyType,
     ): void {
         $landUseRepository = new LandUseRepository();
@@ -57,8 +57,8 @@ class SquareMeterServiceTest extends TestCase
             $landUseService,
         );
 
-        $result = $squareMeterService->getAveragePriceByPostalCodeAndCadastralColonyType(
-            $postalCode,
+        $result = $squareMeterService->getAveragePriceByZipCodeAndCadastralColonyType(
+            $zipCode,
             $areaColonyType,
         );
 
@@ -66,12 +66,12 @@ class SquareMeterServiceTest extends TestCase
     }
 
     /**
-     * @param string $postalCode
+     * @param string $zipCode
      * @param string $areaColonyType
      * @return void
      */
     #[DataProvider('dataProvider')] public function testMaximumPrice(
-        string $postalCode,
+        string $zipCode,
         string $areaColonyType,
     ): void {
         $landUseRepository = new LandUseRepository();
@@ -82,8 +82,8 @@ class SquareMeterServiceTest extends TestCase
             $landUseService,
         );
 
-        $result = $squareMeterService->getMaximumPriceByPostalCodeAndCadastralColonyType(
-            $postalCode,
+        $result = $squareMeterService->getMaximumPriceByZipCodeAndCadastralColonyType(
+            $zipCode,
             $areaColonyType,
         );
 
@@ -91,12 +91,12 @@ class SquareMeterServiceTest extends TestCase
     }
 
     /**
-     * @param string $postalCode
+     * @param string $zipCode
      * @param string $areaColonyType
      * @return void
      */
     #[DataProvider('dataProvider')] public function testMinimumPrice(
-        string $postalCode,
+        string $zipCode,
         string $areaColonyType,
     ): void {
         $landUseRepository = new LandUseRepository();
@@ -107,8 +107,8 @@ class SquareMeterServiceTest extends TestCase
             $landUseService,
         );
 
-        $result = $squareMeterService->getMinimumPriceByPostalCodeAndCadastralColonyType(
-            $postalCode,
+        $result = $squareMeterService->getMinimumPriceByZipCodeAndCadastralColonyType(
+            $zipCode,
             $areaColonyType,
         );
 

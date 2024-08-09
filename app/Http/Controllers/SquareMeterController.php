@@ -6,7 +6,7 @@ use App\Services\SquareMeterService;
 use App\Services\SquareMeterServiceInterface;
 use App\Validators\AggregateTypeValidator;
 use App\Validators\CadastralColonyTypeValidator;
-use App\Validators\PostalCodeValidator;
+use App\Validators\ZipCodeValidator;
 use Illuminate\Http\Request;
 
 use function igorw\get_in;
@@ -14,16 +14,16 @@ use function igorw\get_in;
 class SquareMeterController extends Controller
 {
     /**
-     * @param PostalCodeValidator $postalCodeValidator
+     * @param ZipCodeValidator $zipCodeValidator
      * @param AggregateTypeValidator $aggregateTypeValidator
      * @param CadastralColonyTypeValidator $cadastralColonyTypeValidator
      * @param SquareMeterServiceInterface $squareMeterService
      */
     public function __construct(
-        protected PostalCodeValidator $postalCodeValidator,
-        protected AggregateTypeValidator $aggregateTypeValidator,
+        protected ZipCodeValidator             $zipCodeValidator,
+        protected AggregateTypeValidator       $aggregateTypeValidator,
         protected CadastralColonyTypeValidator $cadastralColonyTypeValidator,
-        protected SquareMeterServiceInterface $squareMeterService,
+        protected SquareMeterServiceInterface  $squareMeterService,
     ) {
     }
 
@@ -32,13 +32,13 @@ class SquareMeterController extends Controller
      */
     public function index(
         Request $request,
-        string $postalCode,
+        string $zipCode,
         string $aggregateType
     ) {
-        if (!$this->postalCodeValidator->isValid($postalCode)) {
+        if (!$this->zipCodeValidator->isValid($zipCode)) {
             return response()->json([
                 'statusCode' => 400,
-                'details' => $this->postalCodeValidator->getErrorMessage(),
+                'details' => $this->zipCodeValidator->getErrorMessage(),
             ], 400);
         }
 
@@ -59,18 +59,18 @@ class SquareMeterController extends Controller
 
         $prices = null;
         if ($aggregateType === SquareMeterService::AVG_AGGREGATE_TYPE_VALUE) {
-            $prices = $this->squareMeterService->getAveragePriceByPostalCodeAndCadastralColonyType(
-                $postalCode,
+            $prices = $this->squareMeterService->getAveragePriceByZipCodeAndCadastralColonyType(
+                $zipCode,
                 $cadastralColonyType,
             );
         } elseif ($aggregateType === SquareMeterService::MAX_AGGREGATE_TYPE_VALUE) {
-            $prices = $this->squareMeterService->getMaximumPriceByPostalCodeAndCadastralColonyType(
-                $postalCode,
+            $prices = $this->squareMeterService->getMaximumPriceByZipCodeAndCadastralColonyType(
+                $zipCode,
                 $cadastralColonyType,
             );
         } elseif ($aggregateType === SquareMeterService::MIN_AGGREGATE_TYPE_VALUE) {
-            $prices = $this->squareMeterService->getMinimumPriceByPostalCodeAndCadastralColonyType(
-                $postalCode,
+            $prices = $this->squareMeterService->getMinimumPriceByZipCodeAndCadastralColonyType(
+                $zipCode,
                 $cadastralColonyType,
             );
         }
