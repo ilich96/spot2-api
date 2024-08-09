@@ -10,7 +10,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
-class SquareMeterTest extends TestCase
+class SquareMeterServiceTest extends TestCase
 {
     use RefreshDatabase;
 

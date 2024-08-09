@@ -217,16 +217,16 @@ class SquareMeterServiceTest extends TestCase
         );
 
         $this->assertIsArray($result);
-        $this->assertArrayHasKey('averageUnitPrice', $result);
-        $this->assertArrayHasKey('averageUnitPriceConstruction', $result);
+        $this->assertArrayHasKey('unitPrice', $result);
+        $this->assertArrayHasKey('unitPriceConstruction', $result);
         $this->assertArrayHasKey('landUsesQuantity', $result);
         $this->assertEquals(
             $expectedResults['expectedAverageUnitPrice'],
-            $result['averageUnitPrice']
+            $result['unitPrice']
         );
         $this->assertEquals(
             $expectedResults['expectedAverageUnitPriceConstruction'],
-            $result['averageUnitPriceConstruction']
+            $result['unitPriceConstruction']
         );
         $this->assertEquals(count($landUseRepositoryResult), $result['landUsesQuantity']);
     }
@@ -302,16 +302,16 @@ class SquareMeterServiceTest extends TestCase
         );
 
         $this->assertIsArray($result);
-        $this->assertArrayHasKey('maximumUnitPrice', $result);
-        $this->assertArrayHasKey('maximumUnitPriceConstruction', $result);
+        $this->assertArrayHasKey('unitPrice', $result);
+        $this->assertArrayHasKey('unitPriceConstruction', $result);
         $this->assertArrayHasKey('landUsesQuantity', $result);
         $this->assertEquals(
             $expectedResults['expectedMaximumUnitPrice'],
-            $result['maximumUnitPrice']
+            $result['unitPrice']
         );
         $this->assertEquals(
             $expectedResults['expectedMaximumUnitPriceConstruction'],
-            $result['maximumUnitPriceConstruction']
+            $result['unitPriceConstruction']
         );
         $this->assertEquals(count($landUseRepositoryResult), $result['landUsesQuantity']);
     }
@@ -387,16 +387,16 @@ class SquareMeterServiceTest extends TestCase
         );
 
         $this->assertIsArray($result);
-        $this->assertArrayHasKey('minimumUnitPrice', $result);
-        $this->assertArrayHasKey('minimumUnitPriceConstruction', $result);
+        $this->assertArrayHasKey('unitPrice', $result);
+        $this->assertArrayHasKey('unitPriceConstruction', $result);
         $this->assertArrayHasKey('landUsesQuantity', $result);
         $this->assertEquals(
             $expectedResults['expectedMinimumUnitPrice'],
-            $result['minimumUnitPrice']
+            $result['unitPrice']
         );
         $this->assertEquals(
             $expectedResults['expectedMinimumUnitPriceConstruction'],
-            $result['minimumUnitPriceConstruction']
+            $result['unitPriceConstruction']
         );
         $this->assertEquals(count($landUseRepositoryResult), $result['landUsesQuantity']);
     }

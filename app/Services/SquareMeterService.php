@@ -8,11 +8,23 @@ use function igorw\get_in;
 
 class SquareMeterService implements SquareMeterServiceInterface
 {
-    private const CADASTRAL_COLONY_TYPES = [
+    public const CADASTRAL_COLONY_TYPES = [
         'A',
         'C',
         'E',
     ];
+
+    public const AGGREGATE_TYPES = [
+        'avg',
+        'max',
+        'min',
+    ];
+
+    public const AVG_AGGREGATE_TYPE_VALUE = 'avg';
+
+    public const MAX_AGGREGATE_TYPE_VALUE = 'max';
+
+    public const MIN_AGGREGATE_TYPE_VALUE = 'min';
 
     /**
      * @param LandUseRepositoryInterface $landUseRepository
@@ -64,8 +76,8 @@ class SquareMeterService implements SquareMeterServiceInterface
         }
 
         return [
-            'averageUnitPrice' => $totalUnitPrice / count($landUses),
-            'averageUnitPriceConstruction' => $totalUnitPriceConstruction / count($landUses),
+            'unitPrice' => $totalUnitPrice / count($landUses),
+            'unitPriceConstruction' => $totalUnitPriceConstruction / count($landUses),
             'landUsesQuantity' => count($landUses),
         ];
     }
@@ -115,8 +127,8 @@ class SquareMeterService implements SquareMeterServiceInterface
         }
 
         return [
-            'maximumUnitPrice' => $maximumUnitPrice,
-            'maximumUnitPriceConstruction' => $maximumUnitPriceConstruction,
+            'unitPrice' => $maximumUnitPrice,
+            'unitPriceConstruction' => $maximumUnitPriceConstruction,
             'landUsesQuantity' => count($landUses),
         ];
     }
@@ -166,8 +178,8 @@ class SquareMeterService implements SquareMeterServiceInterface
         }
 
         return [
-            'minimumUnitPrice' => $minimumUnitPrice,
-            'minimumUnitPriceConstruction' => $minimumUnitPriceConstruction,
+            'unitPrice' => $minimumUnitPrice,
+            'unitPriceConstruction' => $minimumUnitPriceConstruction,
             'landUsesQuantity' => count($landUses),
         ];
     }
