@@ -19,7 +19,7 @@ return new class extends Migration
             $table->float('ground_area');
             $table->float('construction_area');
             $table->float('subsidy');
-            $table->index(['postal_code', 'area_colony_type']);
+            $table->index(['zip_code', 'area_colony_type']);
         });
     }
 
