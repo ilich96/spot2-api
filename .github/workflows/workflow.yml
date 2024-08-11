@@ -7,8 +7,8 @@ env:
   ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}
   ECS_TASK_DEFINITION: ${{ vars.ECS_TASK_DEFINITION }}
   CONTAINER_NAME: ${{ vars.ECS_CONTAINER_NAME }}
-  ECS_SERVICE: ${{ vars.ECS_SERVICE }}
-  ECS_CLUSTER: ${{ vars.ECS_CLUSTER }}
+  ECS_SERVICE_NAME: ${{ vars.ECS_SERVICE_NAME }}
+  ECS_CLUSTER_NAME: ${{ vars.ECS_CLUSTER_NAME }}
 
 permissions:
   contents: read
@@ -162,6 +162,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: ${{ env.ECS_SERVICE }}
-          cluster: ${{ env.ECS_CLUSTER }}
+          service: ${{ env.ECS_SERVICE_NAME }}
+          cluster: ${{ env.ECS_CLUSTER_NAME }}
           wait-for-service-stability: true
