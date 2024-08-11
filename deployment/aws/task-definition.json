@@ -1,5 +1,5 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-west-2:025066241958:task-definition/spot2-service:6",
+    "taskDefinitionArn": "arn:aws:ecs:us-west-2:025066241958:task-definition/spot2-service:11",
     "containerDefinitions": [
         {
             "name": "spot2-api-backend",
@@ -16,7 +16,24 @@
                 }
             ],
             "essential": true,
-            "environment": [],
+            "environment": [
+                {
+                    "name": "DB_CONNECTION",
+                    "value": "pgsql"
+                },
+                {
+                    "name": "DB_HOST",
+                    "value": "spot2-aurora-db.cluster-cn440kysw075.us-west-2.rds.amazonaws.com"
+                },
+                {
+                    "name": "DB_PORT",
+                    "value": "5432"
+                },
+                {
+                    "name": "DB_DATABASE",
+                    "value": "spot2"
+                }
+            ],
             "mountPoints": [],
             "volumesFrom": [],
             "linuxParameters": {
@@ -28,6 +45,16 @@
                 },
                 "initProcessEnabled": true
             },
+            "secrets": [
+                {
+                    "name": "DB_USERNAME",
+                    "valueFrom": "arn:aws:secretsmanager:us-west-2:025066241958:secret:rds!cluster-0a9688d8-71df-4c44-b170-1b4f97847bb5-K3Rwtp:username"
+                },
+                {
+                    "name": "DB_PASSWORD",
+                    "valueFrom": "arn:aws:secretsmanager:us-west-2:025066241958:secret:rds!cluster-0a9688d8-71df-4c44-b170-1b4f97847bb5-K3Rwtp:password"
+                }
+            ],
             "startTimeout": 30,
             "stopTimeout": 120,
             "user": "0",
@@ -51,13 +78,10 @@
     "taskRoleArn": "arn:aws:iam::025066241958:role/spot2-service-20240807071625394700000002",
     "executionRoleArn": "arn:aws:iam::025066241958:role/spot2-service-20240807071625395900000004",
     "networkMode": "awsvpc",
-    "revision": 6,
+    "revision": 11,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.24"
-        },
         {
             "name": "com.amazonaws.ecs.capability.ecr-auth"
         },
@@ -71,13 +95,7 @@
             "name": "com.amazonaws.ecs.capability.task-iam-role"
         },
         {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.25"
-        },
-        {
             "name": "ecs.capability.container-health-check"
-        },
-        {
-            "name": "ecs.capability.container-ordering"
         },
         {
             "name": "ecs.capability.execution-role-ecr-pull"
@@ -87,6 +105,18 @@
         },
         {
             "name": "ecs.capability.task-eni"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.24"
+        },
+        {
+            "name": "ecs.capability.secrets.asm.environment-variables"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.25"
+        },
+        {
+            "name": "ecs.capability.container-ordering"
         }
     ],
     "placementConstraints": [],
@@ -103,7 +133,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-08-07T15:28:09.066Z",
+    "registeredAt": "2024-08-11T21:41:10.795Z",
     "registeredBy": "arn:aws:iam::025066241958:user/admin",
     "tags": []
 }

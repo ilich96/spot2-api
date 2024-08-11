@@ -11,9 +11,6 @@ COPY . /app
 
 WORKDIR /app
 
-# Copy .env file
-RUN cp .env.example .env
-
 # Remove tests folder
 RUN rm -Rf /app/tests/
 
