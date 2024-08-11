@@ -12,8 +12,20 @@ class TestController extends Controller
      */
     public function index()
     {
+        $databaseConnection = env('DB_CONNECTION');
+        $databaseName = env('DB_DATABASE');
+        $databaseHost = env('DB_HOST');
+        $databasePassword = env('DB_PASSWORD');
+        $databasePort = env('DB_PORT');
+        $databaseUsername = env('DB_USERNAME');
+
         $result = [
-            'testing' => true,
+            'connection' => $databaseConnection,
+            'database' => $databaseName,
+            'host' => $databaseHost,
+            'username' => $databaseUsername,
+            'password' => $databasePassword,
+            'port' => $databasePort,
         ];
 
         return response()->json($result, 200);
