@@ -1,0 +1,37 @@
+services:
+  api:
+    image: 'bitnami/laravel:11-debian-12'
+    environment:
+      - DB_CONNECTION=mysql
+      - DB_HOST=database
+      - DB_USERNAME=diego
+      - DB_PASSWORD=diego123
+      - DB_DATABASE=spot2
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+
+  database:
+    image: 'bitnami/mysql:8.0-debian-12'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_USER=diego
+      - MYSQL_PASSWORD=diego123
+      - MYSQL_DATABASE=spot2
+    volumes:
+      - db:/bitnami/mysql/data
+    ports:
+      - "3306:3306"
+
+  swagger-ui:
+    image: 'swaggerapi/swagger-ui'
+    volumes:
+      - ./documentation/openapi.yaml:/openapi.yaml
+    environment:
+      - SWAGGER_JSON=/openapi.yaml
+    ports:
+      - "8080:8080"
+
+volumes:
+  db:
