@@ -1,0 +1,76 @@
+openapi: 3.0.3
+info:
+  title: Spot2 - API
+  description: |-
+    This is an API for get prices by square meter in the Álvaro Obregón
+    town hall in Mexico City.
+  version: 0.9.0
+servers:
+  - url: http://localhost:8000/api
+paths:
+  /price-m2/zip-codes/{zipCode}/aggregate/{aggregateType}:
+    get:
+      tags:
+        - Square meter
+      summary: Get prices by postal code and aggregate type
+      description: Returns prices.
+      operationId: getPricesByZipCodeAndAggregateType
+      parameters:
+        - name: zipCode
+          in: path
+          description: Zip code to use in search
+          required: true
+          schema:
+            type: string
+        - name: aggregateType
+          in: path
+          description: Aggregate type used in the operation
+          required: true
+          schema:
+            type: string
+            enum:
+              - avg
+              - max
+              - min
+        - name: cve_vus
+          in: query
+          description: Cadastral colony type used in the operation
+          required: true
+          schema:
+            type: string
+            enum:
+              - A
+              - C
+              - E
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  payload:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                          - avg
+                          - max
+                          - min
+                      price_unit:
+                        type: number
+                        format: float
+                        example: 1339.261272891975
+                      price_unit_construction:
+                        type: number
+                        format: float
+                        example: 955.0077299903826
+                      elements:
+                        type: integer
+                        example: 4
+        '400':
+          description: Invalid values supplied
