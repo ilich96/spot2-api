@@ -98,8 +98,12 @@ class SquareMeterService implements SquareMeterServiceInterface
             return null;
         }
 
+        # This is a workaround because the data in production was inserted in an unexpected way for the
+        # 'zip_code' column values.
+        $_zipCode = (int) $zipCode;
+
         $landUses = $this->landUseRepository->getAllByZipCodeAndCadastralColonyType(
-            $zipCode,
+            (string) $_zipCode,
             $cadastralColonyType,
         );
         if (count($landUses) === 0) {
@@ -149,8 +153,12 @@ class SquareMeterService implements SquareMeterServiceInterface
             return null;
         }
 
+        # This is a workaround because the data in production was inserted in an unexpected way for the
+        # 'zip_code' column values.
+        $_zipCode = (int) $zipCode;
+
         $landUses = $this->landUseRepository->getAllByZipCodeAndCadastralColonyType(
-            $zipCode,
+            (string) $_zipCode,
             $cadastralColonyType,
         );
         if (count($landUses) === 0) {

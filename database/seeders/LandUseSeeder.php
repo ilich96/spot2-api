@@ -14,7 +14,7 @@ class LandUseSeeder extends Seeder
     {
         DB::table('land_uses')->insert([
             [
-                'zip_code' => '01120',
+                'zip_code' => '1120',
                 'area_colony_type' => 'A',
                 'land_price' => 415694.7294,
                 'ground_area' => 159.58,
@@ -22,7 +22,7 @@ class LandUseSeeder extends Seeder
                 'subsidy' => 644.2609189922794224,
             ],
             [
-                'zip_code' => '01120',
+                'zip_code' => '1120',
                 'area_colony_type' => 'A',
                 'land_price' => 194171.4822,
                 'ground_area' => 74.54,
@@ -30,7 +30,7 @@ class LandUseSeeder extends Seeder
                 'subsidy' => 354.418473733421472,
             ],
             [
-                'zip_code' => '01120',
+                'zip_code' => '1120',
                 'area_colony_type' => 'A',
                 'land_price' => 81,
                 'ground_area' => 150,
@@ -38,7 +38,7 @@ class LandUseSeeder extends Seeder
                 'subsidy' => 681.7752693652,
             ],
             [
-                'zip_code' => '01120',
+                'zip_code' => '1120',
                 'area_colony_type' => 'C',
                 'land_price' => 584754.6864,
                 'ground_area' => 224.48,
@@ -46,7 +46,7 @@ class LandUseSeeder extends Seeder
                 'subsidy' => 0,
             ],
             [
-                'zip_code' => '01120',
+                'zip_code' => '1120',
                 'area_colony_type' => 'A',
                 'land_price' => 362085.27,
                 'ground_area' => 139,
@@ -54,7 +54,7 @@ class LandUseSeeder extends Seeder
                 'subsidy' => 777.8302463412,
             ],
             [
-                'zip_code' => '01408',
+                'zip_code' => '1408',
                 'area_colony_type' => 'E',
                 'land_price' => 429813.45,
                 'ground_area' => 165,
@@ -62,7 +62,7 @@ class LandUseSeeder extends Seeder
                 'subsidy' => 707.972681122024,
             ],
             [
-                'zip_code' => '01408',
+                'zip_code' => '1408',
                 'area_colony_type' => 'E',
                 'land_price' => 283937.37,
                 'ground_area' => 109,
@@ -70,7 +70,7 @@ class LandUseSeeder extends Seeder
                 'subsidy' => 1159.70169616904,
             ],
             [
-                'zip_code' => '01408',
+                'zip_code' => '1408',
                 'area_colony_type' => 'C',
                 'land_price' => 489726.84,
                 'ground_area' => 188,
@@ -78,7 +78,7 @@ class LandUseSeeder extends Seeder
                 'subsidy' => 831.885779501416,
             ],
             [
-                'zip_code' => '01408',
+                'zip_code' => '1408',
                 'area_colony_type' => 'A',
                 'land_price' => 513171.21,
                 'ground_area' => 197,
@@ -86,7 +86,7 @@ class LandUseSeeder extends Seeder
                 'subsidy' => 0,
             ],
             [
-                'zip_code' => '01408',
+                'zip_code' => '1408',
                 'area_colony_type' => 'E',
                 'land_price' => 18,
                 'ground_area' => 63,
@@ -94,7 +94,7 @@ class LandUseSeeder extends Seeder
                 'subsidy' => 236.571281933328,
             ],
             [
-                'zip_code' => '01408',
+                'zip_code' => '1408',
                 'area_colony_type' => 'C',
                 'land_price' => 640526.2377,
                 'ground_area' => 245.89,
@@ -102,7 +102,7 @@ class LandUseSeeder extends Seeder
                 'subsidy' => 849.3762596051186,
             ],
             [
-                'zip_code' => '01740',
+                'zip_code' => '1740',
                 'area_colony_type' => 'A',
                 'land_price' => 418976.9412,
                 'ground_area' => 160.84,
@@ -110,7 +110,7 @@ class LandUseSeeder extends Seeder
                 'subsidy' => 725.9511077543872,
             ],
             [
-                'zip_code' => '01740',
+                'zip_code' => '1740',
                 'area_colony_type' => 'A',
                 'land_price' => 65123.25,
                 'ground_area' => 25,
@@ -118,7 +118,7 @@ class LandUseSeeder extends Seeder
                 'subsidy' => 398.958534422424,
             ],
             [
-                'zip_code' => '01740',
+                'zip_code' => '1740',
                 'area_colony_type' => 'C',
                 'land_price' => 343850.76,
                 'ground_area' => 132,
@@ -126,7 +126,7 @@ class LandUseSeeder extends Seeder
                 'subsidy' => 965.555114149104,
             ],
             [
-                'zip_code' => '01740',
+                'zip_code' => '1740',
                 'area_colony_type' => 'A',
                 'land_price' => 78147.9,
                 'ground_area' => 30,
@@ -134,7 +134,7 @@ class LandUseSeeder extends Seeder
                 'subsidy' => 534.57574001688,
             ],
             [
-                'zip_code' => '01740',
+                'zip_code' => '1740',
                 'area_colony_type' => 'A',
                 'land_price' => 643964.7453,
                 'ground_area' => 247.21,
@@ -142,7 +142,7 @@ class LandUseSeeder extends Seeder
                 'subsidy' => 1995.62983975512646,
             ],
             [
-                'zip_code' => '01740',
+                'zip_code' => '1740',
                 'area_colony_type' => 'E',
                 'land_price' => 1203946.5474,
                 'ground_area' => 462.18,
@@ -150,7 +150,7 @@ class LandUseSeeder extends Seeder
                 'subsidy' => 1388.4353897486152,
             ],
             [
-                'zip_code' => '01740',
+                'zip_code' => '1740',
                 'area_colony_type' => 'E',
                 'land_price' => 156295.8,
                 'ground_area' => 60,
