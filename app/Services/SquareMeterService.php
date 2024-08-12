@@ -62,8 +62,11 @@ class SquareMeterService implements SquareMeterServiceInterface
         foreach ($landUses as $landUse) {
             $unitPrices = $this->landUseService->getUnitPrices($landUse);
             if (is_null($unitPrices)) {
+                var_dump("is_null(unitPrices)");
                 continue;
             }
+
+            var_dump("is_not_null(unitPrices)");
 
             $unitPrice = get_in($unitPrices, ['unitPrice']);
             $unitPriceConstruction = get_in($unitPrices, ['unitPriceConstruction']);
