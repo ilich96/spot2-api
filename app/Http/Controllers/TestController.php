@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TestController extends Controller
 {
@@ -28,7 +29,18 @@ class TestController extends Controller
             'port' => $databasePort,
         ];
 
-        return response()->json($result, 200);
+        try {
+            DB::connection()->getPdo();
+
+            return response()->json([
+                "success" => true,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                "success" => false,
+                "message" => $e->getMessage(),
+            ]);
+        }
     }
 
     /**
