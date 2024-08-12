@@ -4,9 +4,9 @@ ENV SERVER_NAME=:80
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y git
-
-RUN docker-php-ext-install pdo_pgsql
+    apt-get install -y git \
+    apt-get install -y libpq-dev \
+    docker-php-ext-install pdo_pgsql
 
 # Copy the app
 COPY . /app
