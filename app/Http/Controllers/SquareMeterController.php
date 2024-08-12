@@ -78,7 +78,7 @@ class SquareMeterController extends Controller
         if (is_null($prices)) {
             return response()->json([
                 'statusCode' => 400,
-                'details' => "Invalid request parameters.",
+                'details' => "Invalid values in request parameters.",
             ], 400);
         }
 
