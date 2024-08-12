@@ -23,6 +23,10 @@ class LandUseService implements LandUseServiceInterface
             && is_double($constructionArea)
             && is_double($subsidy)
         ) {
+            if ($groundArea == 0 || $constructionArea == 0) {
+                return null;
+            }
+
             $unitPrice = ($landPrice / $groundArea) - $subsidy;
             $unitPriceConstruction = ($landPrice / $constructionArea) - $subsidy;
 
